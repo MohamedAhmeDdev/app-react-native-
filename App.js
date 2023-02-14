@@ -1,18 +1,42 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList  } from 'react-native';
 
 export default function App() {
-  const[name, setName] = useState('moha')
-  const[age, setAge] = useState('30')
+  const [people, setPeople] = useState([
+    { name: 'shaun',id: '1' },
+    { name: 'yoshi',id: '2' },
+    { name: 'mario',id: '3' },
+    { name: 'luigi',id: '4' },
+    { name: 'peach',id: '5' },
+    { name: 'toad',id: '6' },
+    { name: 'bowser',id: '7' },
+    { name: 'bowser',id: '8' },
+  ]);
 
+
+
+  // return (
+  //   <View style={styles.container}>
+  //     <ScrollView>
+  //    {people.map(item=>(
+  //      <View key={item.key}>
+  //        <Text style={styles.item}>{item.name}</Text>
+  //      </View>
+  //     ))}
+  //    </ScrollView>
+  //   </View>
+  // );
 
   return (
     <View style={styles.container}>
-      <Text>Enter name:</Text>
-      <TextInput  placeholder='e.g. 99' style={styles.input} onChangeText={(value) => setName(value)}/>
-      <Text>Enter age:</Text>
-      <TextInput keyboardType='numeric'  placeholder='e.g. 99' style={styles.input} onChangeText={(value) => setAge(value)}/>
-      <Text>name{name}, age {age}</Text>
+
+      <FlatList 
+        data={people} 
+        renderItem={({ item }) => ( 
+          <Text style={styles.item}>{item.name}</Text>
+        )}
+      />
+
     </View>
   );
 }
@@ -21,14 +45,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 40,
+    paddingHorizontal: 20
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
-  input: {
-    borderWidth: 1,
-    borderColor: '#777',
-    padding: 8,
-    margin: 10,
-    width: 200,
-  }
+  item: {
+    marginTop: 24,
+    padding: 30,
+    backgroundColor: 'pink',
+    fontSize: 24,
+  },
 });
